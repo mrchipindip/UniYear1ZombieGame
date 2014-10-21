@@ -28,6 +28,11 @@ public class ZombieBehaviour : MonoBehaviour {
 						GetComponent<SmoothLookAtTarget2D> ().target = player;
 				}
 		}
+	void OnCollisionEnter2D(Collision2D other) {
+				if (other.gameObject.CompareTag ("Player")) {
+			other.transform.SendMessage ("TakeDamage", damage);
+				}
+		}
 
 	void FixedUpdate(){
 				rigidbody2D.velocity = Vector2.zero;
