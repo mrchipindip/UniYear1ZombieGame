@@ -41,7 +41,7 @@ public class PlayerBehaviour : MonoBehaviour {
 						}
 
 				} else {
-			walkingAnim.SetBool( "IsWalking", false );
+			walkingAnim.SetBool( "isWalking", false );
 
 			if(walkingSound.isPlaying ){
 				walkingSound.Stop();
