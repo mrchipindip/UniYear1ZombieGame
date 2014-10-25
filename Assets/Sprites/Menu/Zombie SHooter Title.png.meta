@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 1a6892da9c03bd24bb242379f5db2f42
+guid: f4c12821e599ed947a56c5fc40d3e37c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: James Zombie
+    21300000: Zombie SHooter Title
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -35,9 +35,9 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
+  alignment: 0
   spritePivot: {x: .5, y: .5}
-  spriteBorder: {x: 0, y: 0, z: 256, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
