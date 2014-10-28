@@ -14,7 +14,7 @@ public class BulletHit2D : MonoBehaviour {
 		else if (other.CompareTag (damageTag2)) {
 			other.SendMessage ("TakeDamage", damage);
 		}
-				Destroy (gameObject);
+				gameObject.SetActive( false);
 		}
 
 }

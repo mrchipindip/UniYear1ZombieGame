@@ -6,6 +6,8 @@ public class PlayerBehaviour : MonoBehaviour {
 	public delegate void UpdateHealth ( int newHealth );
 	public static event UpdateHealth onUpdateHealth;
 
+	public string levelName = "GameOverScene";
+
 	public int health = 100;
 	public Transform walkingTransform;
 
@@ -56,6 +58,7 @@ public class PlayerBehaviour : MonoBehaviour {
 			onUpdateHealth( health );
 
 		if(health <=0 ) {
+			Application.LoadLevel (levelName);
 			Die();
 		}
 	}

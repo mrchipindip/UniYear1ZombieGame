@@ -18,9 +18,9 @@ public class ShootBullet : MonoBehaviour {
 
 
 		print ("!!");
-		if(audio){
-			audio.Play ();
-		}
+		//\\if(audio){
+		//\\	audio.Play ();
+		////}
 		Invoke ("SetFiring",fireTime);
 	}
 

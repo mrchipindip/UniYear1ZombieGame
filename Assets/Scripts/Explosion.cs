@@ -3,15 +3,18 @@ using System.Collections;
 
 public class Explosion : MonoBehaviour {
 	public float destroyTime=0.7f;
+	public Animator anim;
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
 		Invoke ("Die", destroyTime);
+		anim.Play ("Explosion");
 	
 	}
 	
 	// Update is called once per frame
 	void Die () {
-		Destroy (gameObject);
+		anim.StopPlayback();
+		gameObject.SetActive (false);
 	
 	}
 }

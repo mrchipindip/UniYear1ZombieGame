@@ -25,26 +25,33 @@ public class ShootFusRoDah : MonoBehaviour {
 	
 	//IEnumerator ACoroutine() {
 	//	executing = true;
-		//yield WaitForSeconds(4);
+		//yield WaitForSeconds(2);
 
 	//}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButton (1)){
+		if(Input.GetMouseButtonDown (1)){
+			audio.Play ();
 			if(!isFiring){
+				//if(audio){
+					//audio.Play ();
+				//}
+				audio.Play ();
+				Invoke("DelayedShot", 1.0f );
 
-					if(audio){
-						audio.Play ();
-					}
 					//StartCoroutine(ACoroutine());
 						//executing = false;
 					//StartCoroutine();
 					//yield return new WaitForSeconds(4);
 
 
-				Fire();
+
 			}
 		}
+	}
+
+	void DelayedShot() {
+		Fire();
 	}
 }	

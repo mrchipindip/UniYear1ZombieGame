@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿
+
+using UnityEngine;
 using System.Collections;
 
 public class Bullet2D : MonoBehaviour {
@@ -6,14 +8,18 @@ public class Bullet2D : MonoBehaviour {
 	public float destroyTime = 0.7f;
 
 	// Use this for initialization
-	void Start () {
+	void OnEnable () {
+		if(audio){
+			audio.Play ();
+		}
 		Invoke ("Die", destroyTime);
+
 	
 	}
 	void Die(){
-				Destroy (gameObject);
+		gameObject.SetActive (false);
 		}
-	void OnDestroy(){
+	void OnDisable(){
 				CancelInvoke ("Die");
 		}
 	

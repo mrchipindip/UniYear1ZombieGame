@@ -29,9 +29,11 @@ public class ZombieBehaviour : MonoBehaviour {
 				}
 		}
 	void OnCollisionEnter2D(Collision2D other) {
+
 				if (other.gameObject.CompareTag ("Player")) {
 			other.transform.SendMessage ("TakeDamage", damage);
-				}
+			}
+				
 		}
 
 	void FixedUpdate(){
