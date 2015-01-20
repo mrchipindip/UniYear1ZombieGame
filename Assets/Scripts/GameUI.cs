@@ -5,6 +5,8 @@ public class GameUI : MonoBehaviour {
 
 	private int health;
 	private int score;
+	private int blueKey;
+	private int pinkKey;
 	private string gameInfo = "";
 	private Rect boxRect = new Rect( 10, 10, 300, 50 );
 	private Rect pauseRect = new Rect (10, 100, 300, 50);
@@ -26,11 +28,13 @@ public class GameUI : MonoBehaviour {
 	void OnEnable() {
 		PlayerBehaviour.onUpdateHealth += HandleonUpdateHealth;
 		AddScore.onSendScore += OnSendScore;
+		PinkKeys.onSendPinkKey += onSendPinkKey;
 		}
 
 	void OnDisable() {
 		PlayerBehaviour.onUpdateHealth -= HandleonUpdateHealth;
 		AddScore.onSendScore -= OnSendScore;
+		PinkKeys.onSendPinkKey += onSendPinkKey;
 		}
 
 	void Start() {
@@ -43,13 +47,19 @@ public class GameUI : MonoBehaviour {
 		UpdateUI ();
 	}
 
+	void onSendPinkKey(int thePinkKey) {
+		pinkKey += thePinkKey;
+		UpdateUI ();
+
+		}
+
 	void OnSendScore(int theScore) {
 				score += theScore;
 				UpdateUI ();
 		}
 
 	void UpdateUI () {
-		gameInfo = "Score: " + score.ToString () + "\nHealth: " + health;
+		gameInfo = "Score: " + score.ToString () + "\nHealth: " + health + "\nPink Keys: " + pinkKey.ToString ();
 	}
 	void OnGUI() {
 				GUI.Box (boxRect, gameInfo);

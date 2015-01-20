@@ -7,8 +7,10 @@ public class PlayerBehaviour : MonoBehaviour {
 	public static event UpdateHealth onUpdateHealth;
 
 	public string levelName = "GameOverScene";
-
+	private int damage = 2;
 	public int health = 100;
+	public int blueKey = 0;
+	public int pinkKey = 0;
 	public Transform walkingTransform;
 
 	private int score;
@@ -61,6 +63,31 @@ public class PlayerBehaviour : MonoBehaviour {
 			Application.LoadLevel (levelName);
 			Die();
 		}
+	}
+
+	void OnCollisionEnter2D(Collision2D other) {
+
+		if (other.gameObject.CompareTag ("BlueKey")) {
+			other.transform.SendMessage ("TakeDamage", damage);
+			blueKey += 1;
+		}
+		if (other.gameObject.CompareTag ("PinkKey")) {
+			other.transform.SendMessage ("TakeDamage", damage);
+			pinkKey += 1;
+		}
+
+		if (other.gameObject.CompareTag ("BlueDoors")) {
+			if (blueKey > 0)
+			{
+			other.transform.SendMessage ("TakeDamage", damage);
+				blueKey -= 1;
+			}
+		}
+
+		if (other.gameObject.CompareTag ("PinkDoors")) {
+			other.transform.SendMessage ("TakeDamage", damage);
+		}
+		
 	}
 
 	void Die() {
