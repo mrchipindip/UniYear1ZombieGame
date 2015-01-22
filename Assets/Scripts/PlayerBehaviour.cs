@@ -5,6 +5,10 @@ public class PlayerBehaviour : MonoBehaviour {
 
 	public delegate void UpdateHealth ( int newHealth );
 	public static event UpdateHealth onUpdateHealth;
+	public delegate void UpdatePinkKeys ( int newPinkKey );
+	public static event UpdatePinkKeys onUpdatePinkKeys;
+	public delegate void UpdateBlueKeys ( int newBlueKey );
+	public static event UpdateBlueKeys onUpdateBlueKeys;
 
 	public string levelName = "GameOverScene";
 	private int damage = 2;
@@ -26,6 +30,12 @@ public class PlayerBehaviour : MonoBehaviour {
 		if (onUpdateHealth != null) {
 						onUpdateHealth (health);
 				}
+		if (onUpdateBlueKeys != null) {
+			onUpdateBlueKeys (blueKey);
+		}
+		if (onUpdatePinkKeys != null) {
+			onUpdatePinkKeys (pinkKey);
+		}
 	}
 	
 
@@ -64,16 +74,27 @@ public class PlayerBehaviour : MonoBehaviour {
 			Die();
 		}
 	}
+	void Die (){
 
+		}
 	void OnCollisionEnter2D(Collision2D other) {
 
 		if (other.gameObject.CompareTag ("BlueKey")) {
-			other.transform.SendMessage ("TakeDamage", damage);
-			blueKey += 1;
-		}
+						other.transform.SendMessage ("TakeDamage", damage);
+						blueKey += 1;
+						if (onUpdateBlueKeys != null) {
+								onUpdateBlueKeys (blueKey);
+						}
+					//if (other.gameObject.CompareName ("BlueKey")){
+
+					//}
+				}
 		if (other.gameObject.CompareTag ("PinkKey")) {
 			other.transform.SendMessage ("TakeDamage", damage);
 			pinkKey += 1;
+			if (onUpdatePinkKeys != null) {
+				onUpdatePinkKeys (pinkKey);
+			}
 		}
 
 		if (other.gameObject.CompareTag ("BlueDoors")) {
@@ -81,17 +102,26 @@ public class PlayerBehaviour : MonoBehaviour {
 			{
 			other.transform.SendMessage ("TakeDamage", damage);
 				blueKey -= 1;
+				if (onUpdateBlueKeys != null) {
+					onUpdateBlueKeys (blueKey);
+				}
+				
 			}
 		}
 
 		if (other.gameObject.CompareTag ("PinkDoors")) {
-			other.transform.SendMessage ("TakeDamage", damage);
+			if (pinkKey > 0)
+			{
+				other.transform.SendMessage ("TakeDamage", damage);
+				pinkKey -= 1;
+				if (onUpdatePinkKeys != null) {
+					onUpdatePinkKeys (pinkKey);
+				}
+			}
 		}
 		
 	}
 
-	void Die() {
 
-	}
 
 }

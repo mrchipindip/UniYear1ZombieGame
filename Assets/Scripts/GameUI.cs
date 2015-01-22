@@ -8,8 +8,8 @@ public class GameUI : MonoBehaviour {
 	private int blueKey;
 	private int pinkKey;
 	private string gameInfo = "";
-	private Rect boxRect = new Rect( 10, 10, 300, 50 );
-	private Rect pauseRect = new Rect (10, 100, 300, 50);
+	private Rect boxRect = new Rect( 10, 10, 300, 100 );
+	private Rect pauseRect = new Rect (10, 100, 300, 100);
 	private bool gamePaused = false;
 
 	void Update() {
@@ -28,13 +28,15 @@ public class GameUI : MonoBehaviour {
 	void OnEnable() {
 		PlayerBehaviour.onUpdateHealth += HandleonUpdateHealth;
 		AddScore.onSendScore += OnSendScore;
-		PinkKeys.onSendPinkKey += onSendPinkKey;
+		PlayerBehaviour.onUpdatePinkKeys += HandleonUpdatePinkKeys;
+		PlayerBehaviour.onUpdateBlueKeys += HandleonUpdateBlueKeys;
 		}
 
 	void OnDisable() {
 		PlayerBehaviour.onUpdateHealth -= HandleonUpdateHealth;
 		AddScore.onSendScore -= OnSendScore;
-		PinkKeys.onSendPinkKey += onSendPinkKey;
+		PlayerBehaviour.onUpdatePinkKeys += HandleonUpdatePinkKeys;
+		PlayerBehaviour.onUpdateBlueKeys += HandleonUpdateBlueKeys; // this may be where an error is present
 		}
 
 	void Start() {
@@ -46,7 +48,16 @@ public class GameUI : MonoBehaviour {
 		health = newHealth;
 		UpdateUI ();
 	}
-
+	void HandleonUpdateBlueKeys (int newBlueKey)
+	{
+		blueKey = newBlueKey;
+		UpdateUI ();
+	}
+	void HandleonUpdatePinkKeys (int newPinkKey)
+	{
+		pinkKey = newPinkKey;
+		UpdateUI ();
+	}
 	void onSendPinkKey(int thePinkKey) {
 		pinkKey += thePinkKey;
 		UpdateUI ();
@@ -59,7 +70,7 @@ public class GameUI : MonoBehaviour {
 		}
 
 	void UpdateUI () {
-		gameInfo = "Score: " + score.ToString () + "\nHealth: " + health + "\nPink Keys: " + pinkKey.ToString ();
+		gameInfo = "Score: " + score.ToString () + "\nHealth: " + health + "\nPink Keys: " + pinkKey + "\nBlue Keys: " + blueKey;
 	}
 	void OnGUI() {
 				GUI.Box (boxRect, gameInfo);
