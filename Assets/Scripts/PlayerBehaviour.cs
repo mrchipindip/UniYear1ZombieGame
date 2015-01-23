@@ -89,15 +89,14 @@ public class PlayerBehaviour : MonoBehaviour {
 
 					//}
 				}
-		if (other.gameObject.CompareTag ("PinkKey")) {
+		else if (other.gameObject.CompareTag ("PinkKey")) {
 			other.transform.SendMessage ("TakeDamage", damage);
 			pinkKey += 1;
 			if (onUpdatePinkKeys != null) {
 				onUpdatePinkKeys (pinkKey);
 			}
 		}
-
-		if (other.gameObject.CompareTag ("BlueDoors")) {
+		else if (other.gameObject.CompareTag ("BlueDoors")) {
 			if (blueKey > 0)
 			{
 			other.transform.SendMessage ("TakeDamage", damage);
@@ -108,8 +107,7 @@ public class PlayerBehaviour : MonoBehaviour {
 				
 			}
 		}
-
-		if (other.gameObject.CompareTag ("PinkDoors")) {
+		else if (other.gameObject.CompareTag ("PinkDoors")) {
 			if (pinkKey > 0)
 			{
 				other.transform.SendMessage ("TakeDamage", damage);
@@ -118,6 +116,12 @@ public class PlayerBehaviour : MonoBehaviour {
 					onUpdatePinkKeys (pinkKey);
 				}
 			}
+		}
+		else if (other.gameObject.CompareTag ("Room1")) {
+			other.transform.SendMessage("Enabler", damage);
+		}
+		else if (other.gameObject.CompareTag ("Room2")) {
+			other.transform.SendMessage("Enabler", damage);
 		}
 		
 	}
