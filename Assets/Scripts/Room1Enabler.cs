@@ -24,7 +24,10 @@ public class Room1Enabler : MonoBehaviour {
 		if (damage > 0) {
 						Debug.Log ("hello world");
 						spawner.gameObject.SetActive(true);
-						spawner2.gameObject.SetActive(true);
+						if (spawner2 != null)
+							{
+								spawner2.gameObject.SetActive(true);
+							}
 						if (spawner3 != null)
 							{
 								spawner3.gameObject.SetActive(true);

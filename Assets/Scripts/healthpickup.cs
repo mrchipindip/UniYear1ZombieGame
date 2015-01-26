@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CrateBehaviour : MonoBehaviour {
-	public int health = 10;
+public class healthpickup : MonoBehaviour {
+
+	public int health = 1;
 	
 	public void TakeDamage (int damage)
 	{
 		health -= damage;
-
+		
 		if (health <= 0) 
 		{
-
 			Destroy(gameObject);
 		}
 	}

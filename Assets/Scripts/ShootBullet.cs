@@ -4,8 +4,11 @@ using System.Collections;
 public class ShootBullet : MonoBehaviour {
 	public GameObject bulletPrefab;
 	public Transform bulletSpawn;
-	public float fireTime = 0.5f;
+	public Transform bulletSpawn2;
 
+	public float fireTime = 0.3f;
+	public float powerUpTime = 5.0f;
+	private bool powerUpOn = false;
 	private bool isFiring = false;
 
 	void SetFiring(){
@@ -15,6 +18,8 @@ public class ShootBullet : MonoBehaviour {
 	void Fire(){
 		isFiring = true;
 		Instantiate (bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+		Instantiate (bulletPrefab, bulletSpawn2.position, bulletSpawn2.rotation);
+
 
 
 		print ("!!");
@@ -23,8 +28,19 @@ public class ShootBullet : MonoBehaviour {
 		////}
 		Invoke ("SetFiring",fireTime);
 	}
+	public void PowerUp()
+	{
+		powerUpTime = 5.0f;
+		powerUpOn = true;
+		Debug.Log ("function called");
+	}
 
-
+	void OnGUI()
+	{
+		if (powerUpOn == true) {
+			GUI.Box(new Rect(Screen.width - 100,0,100,50), "Power Up:" + "\nFire Rate: " + powerUpTime.ToString("0"));
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,5 +49,17 @@ public class ShootBullet : MonoBehaviour {
 				Fire();
 			}
 		}
+
+		if(powerUpOn == true) {
+			fireTime = 0.15f;
+			powerUpTime -= Time.deltaTime;
+			if (powerUpTime <= 0 ){
+				powerUpTime = 0;
+				powerUpOn = false;
+				fireTime = 0.3f;
+			}
+			
+		}
+
 	}
 }	

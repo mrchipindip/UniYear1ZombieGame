@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlueKeys : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
+public class AudioPlay : MonoBehaviour {
+		void AudioGo () {
+		audio.Play ();
+		}
 	
 	// Update is called once per frame
 	void Update () {

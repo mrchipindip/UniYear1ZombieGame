@@ -16,6 +16,7 @@ public class PlayerBehaviour : MonoBehaviour {
 	public int blueKey = 0;
 	public int pinkKey = 0;
 	public Transform walkingTransform;
+	public int rapidFireDuration = 5;
 
 	private int score;
 	private Animator anim;
@@ -62,6 +63,8 @@ public class PlayerBehaviour : MonoBehaviour {
 				walkingSound.loop = false;
 			}
 	}
+
+				
 }
 	public void TakeDamage( int damage ) {
 		health -= damage;
@@ -77,6 +80,11 @@ public class PlayerBehaviour : MonoBehaviour {
 	void Die (){
 
 		}
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.CompareTag ("Room1")) {
+			other.transform.SendMessage("Enabler", damage);
+				}
+		}
 	void OnCollisionEnter2D(Collision2D other) {
 
 		if (other.gameObject.CompareTag ("BlueKey")) {
@@ -85,45 +93,57 @@ public class PlayerBehaviour : MonoBehaviour {
 						if (onUpdateBlueKeys != null) {
 								onUpdateBlueKeys (blueKey);
 						}
-					//if (other.gameObject.CompareName ("BlueKey")){
+						//if (other.gameObject.CompareName ("BlueKey")){
 
-					//}
-				}
-		else if (other.gameObject.CompareTag ("PinkKey")) {
-			other.transform.SendMessage ("TakeDamage", damage);
-			pinkKey += 1;
-			if (onUpdatePinkKeys != null) {
-				onUpdatePinkKeys (pinkKey);
-			}
-		}
-		else if (other.gameObject.CompareTag ("BlueDoors")) {
-			if (blueKey > 0)
-			{
-			other.transform.SendMessage ("TakeDamage", damage);
-				blueKey -= 1;
-				if (onUpdateBlueKeys != null) {
-					onUpdateBlueKeys (blueKey);
-				}
+						//}
+				} else if (other.gameObject.CompareTag ("PinkKey")) {
+						other.transform.SendMessage ("TakeDamage", damage);
+						pinkKey += 1;
+						if (onUpdatePinkKeys != null) {
+								onUpdatePinkKeys (pinkKey);
+						}
+				} else if (other.gameObject.CompareTag ("BlueDoors")) {
+						if (blueKey > 0) {
+								other.transform.SendMessage ("TakeDamage", damage);
+								blueKey -= 1;
+								if (onUpdateBlueKeys != null) {
+										onUpdateBlueKeys (blueKey);
+								}
 				
-			}
-		}
-		else if (other.gameObject.CompareTag ("PinkDoors")) {
-			if (pinkKey > 0)
-			{
-				other.transform.SendMessage ("TakeDamage", damage);
-				pinkKey -= 1;
-				if (onUpdatePinkKeys != null) {
-					onUpdatePinkKeys (pinkKey);
+						}
+				} else if (other.gameObject.CompareTag ("PinkDoors")) {
+						if (pinkKey > 0) {
+								other.transform.SendMessage ("TakeDamage", damage);
+								pinkKey -= 1;
+								if (onUpdatePinkKeys != null) {
+										onUpdatePinkKeys (pinkKey);
+								}
+						}
+				} else if (other.gameObject.CompareTag ("Room1")) {
+						other.transform.SendMessage ("Enabler", damage);
+				} else if (other.gameObject.CompareTag ("Room2")) {
+						other.transform.SendMessage ("Enabler", damage);
+				} else if (other.gameObject.CompareTag ("HealthPickup")) {
+						other.transform.SendMessage ("TakeDamage", damage);
+						if (health >= 80) {
+								health = 100;
+						} else {
+								health += 20;
+						}
+						if (onUpdateHealth != null) {
+								onUpdateHealth (health);
+						}
+				} else if (other.gameObject.CompareTag ("SpeedPickup")) {
+						TopDownCharacterController2D otherScript = GetComponent<TopDownCharacterController2D>();
+						otherScript.PowerUp();
+						other.transform.SendMessage ("TakeDamage", damage);
+				} else if (other.gameObject.CompareTag ("FireRatePickup")) {
+						ShootBullet otherScript = GetComponent<ShootBullet>();
+						otherScript.PowerUp();
+						other.transform.SendMessage ("TakeDamage", damage);
 				}
-			}
-		}
-		else if (other.gameObject.CompareTag ("Room1")) {
-			other.transform.SendMessage("Enabler", damage);
-		}
-		else if (other.gameObject.CompareTag ("Room2")) {
-			other.transform.SendMessage("Enabler", damage);
-		}
-		
+
+
 	}
 
 

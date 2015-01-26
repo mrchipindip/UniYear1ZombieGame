@@ -4,18 +4,23 @@ using System.Collections;
 public class ZombieBehaviour : MonoBehaviour {
 	private Transform player;
 	public int health = 10;
-	private int damage = 2;
+	public int damage = 15;
 	public GameObject explosionPrefab;
 	public float adjustExplosionAngle = 0.0f;
+	public GameObject enabledObject;
 
 	public void TakeDamage(int damage) {
 		health -= damage;
-
+		Debug.Log (health.ToString ());
 		if( health <=0){
+
 			Quaternion newRot = Quaternion.Euler (transform.eulerAngles.x,transform.eulerAngles.y,transform.eulerAngles.z+adjustExplosionAngle);
 			Instantiate(explosionPrefab,transform.position,newRot);
-
 			GetComponent<AddScore>().DoSendScore();
+			if (enabledObject != null)
+			{
+				enabledObject.gameObject.SetActive(true);
+			}
 			Destroy(gameObject);
 }
 	}
