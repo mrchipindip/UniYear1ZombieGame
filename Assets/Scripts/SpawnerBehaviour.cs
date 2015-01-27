@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SpawnerBehaviour : MonoBehaviour {
-	public int health = 20;
+	public int health = 10;
 
 	public void TakeDamage (int damage)
 	{
