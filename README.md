@@ -28,7 +28,7 @@ Assignment Details
 
 ---
 ###Deadline
-**Saturday 8th Nov 2014 @ 23:00**
+**Tuesday 27 Jan 2015 @ 23:00**
 
 ---
 ###Module Documentation
