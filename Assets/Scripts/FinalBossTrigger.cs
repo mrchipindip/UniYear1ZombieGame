@@ -8,8 +8,7 @@ public class FinalBossTrigger : MonoBehaviour {
 	public GameObject spawner4;
 	public GameObject spawner5;
 	public GameObject spawner6;
-	
-	
+
 	//void Start() {
 	//	if (spawner == null)
 	//	spawner = GameObject.FindWithTag("spawner");

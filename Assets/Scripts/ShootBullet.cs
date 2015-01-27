@@ -51,7 +51,7 @@ public class ShootBullet : MonoBehaviour {
 		}
 
 		if(powerUpOn == true) {
-			fireTime = 0.15f;
+			fireTime = 0.08f;
 			powerUpTime -= Time.deltaTime;
 			if (powerUpTime <= 0 ){
 				powerUpTime = 0;

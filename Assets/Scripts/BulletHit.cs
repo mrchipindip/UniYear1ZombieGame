@@ -18,6 +18,7 @@ public class BulletHit : MonoBehaviour {
 			other.SendMessage ("TakeDamage", damage);
 		} else if (other.CompareTag (damageTag3)) {
 			other.SendMessage ("TakeDamage", damage);
+			Debug.Log ("message sent2");
 		} else if (other.CompareTag (damageTag4)) {
 			other.SendMessage ("TakeDamage", damage);
 		}

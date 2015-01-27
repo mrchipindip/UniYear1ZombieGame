@@ -7,5 +7,6 @@ public class HardMode : MonoBehaviour {
 	
 	void OnMouseUp () {
 		Application.LoadLevel (levelName);
+		Debug.Log ("called");
 	}
 }

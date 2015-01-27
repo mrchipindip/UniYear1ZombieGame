@@ -22,8 +22,12 @@ public class PlayerBehaviour : MonoBehaviour {
 	private Animator anim;
 	private Animator walkingAnim;
 	private AudioSource walkingSound;
+	public GameObject audioCaller;
+	public int audioTrack = 1;
+
 
 	void Start () {
+		audioCaller.transform.SendMessage("AudioChange", audioTrack);
 		anim = GetComponent<Animator> ();
 		walkingAnim = walkingTransform.GetComponent<Animator> ();
 		walkingSound = walkingTransform.GetComponent<AudioSource> ();

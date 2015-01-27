@@ -18,7 +18,7 @@ public class KeyScript : MonoBehaviour {
 				enabledObject.gameObject.SetActive(true);
 			}
 			Destroy(gameObject);
-			GetComponent<PinkKeys>().DoPinkKey();
+			//GetComponent<PinkKeys>().DoPinkKey();
 		}
 	}
 	// Update is called once per frame
