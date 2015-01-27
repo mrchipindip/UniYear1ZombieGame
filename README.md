@@ -15,7 +15,7 @@ Personal Details (Students Fill In Below)
 - **Assignment Title**: Zombie Shooter part 1
 
 
-1. **Blog Link**: None
+1. **Blog Link**: http://chriswesemael.tumblr.com/
 2. **Screen Capture Link**: None
 3. **Credits**
  * Unity Template - Interactive Systems Studio
