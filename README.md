@@ -16,7 +16,7 @@ Personal Details (Students Fill In Below)
 
 
 1. **Blog Link**: http://chriswesemael.tumblr.com/
-2. **Screen Capture Link**: None
+2. **Screen Capture Link**: https://www.youtube.com/watch?v=RBy9oPZWW88
 3. **Credits**
  * Unity Template - Interactive Systems Studio
  
